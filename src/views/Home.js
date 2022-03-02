@@ -25,7 +25,7 @@ const Home = ({usuario}) => {
 
   return (
     <Container fluid>
-      <ModalAniadir isModalAniadir={isModalAniadir} setIsModalAniadir={setIsModalAniadir}/>
+      <ModalAniadir isModalAniadir={isModalAniadir} setIsModalAniadir={setIsModalAniadir} actualizarEstadoProductos={actualizarEstadoProductos}/>
       <Stack direction="horizontal" className="justify-content-between">
         <p style={{fontSize: 24}}>Home - Welcome, {usuario.email}</p>
         <Button onClick={signOut}>Cerrar Sesión</Button>
