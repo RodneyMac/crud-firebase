@@ -1,16 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import signOut from "../functions/cerrarSesion";
 import {Container, Stack, Button, Form, Table} from "react-bootstrap";
 import getAllProducts from "../functions/getAllProducts";
+import ModalAniadir from '../components/ModalAniadir';
 
 const Home = ({usuario}) => {
 
   const [productos, setProductos] = React.useState([]);
+  const [isModalAniadir, setIsModalAniadir] = useState(false);
 
   function actualizarEstadoProductos() {
     getAllProducts().then((productos) => {
       setProductos(productos);
     });
+  }
+
+  function aniadirProductoHome() {
+    setIsModalAniadir(true);
   }
 
   useEffect(() => {
@@ -19,6 +25,7 @@ const Home = ({usuario}) => {
 
   return (
     <Container fluid>
+      <ModalAniadir isModalAniadir={isModalAniadir} setIsModalAniadir={setIsModalAniadir}/>
       <Stack direction="horizontal" className="justify-content-between">
         <p style={{fontSize: 24}}>Home - Welcome, {usuario.email}</p>
         <Button onClick={signOut}>Cerrar Sesión</Button>
@@ -59,16 +66,9 @@ const Home = ({usuario}) => {
               </td>
             </tr>
           ))}
-          <tr>
-            <td>1</td>
-            <td>Titulo</td>
-            <td>$ 100</td>
-            <td>10</td>
-            <td>10</td>
-            <td>10</td>
-          </tr>
         </tbody>
       </Table>
+      <Button onClick={aniadirProductoHome}>Añadir Producto</Button>
     </Container>
   )
 }
