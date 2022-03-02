@@ -4,11 +4,14 @@ import {Container, Stack, Button, Form, Table} from "react-bootstrap";
 import getAllProducts from "../functions/getAllProducts";
 import ModalAniadir from '../components/ModalAniadir';
 import eliminarProductoHome from "../functions/eliminarProductoHome";
+import ModalEditar from '../components/ModalEditar';
 
 const Home = ({usuario}) => {
 
   const [productos, setProductos] = React.useState([]);
   const [isModalAniadir, setIsModalAniadir] = useState(false);
+  const [isModalEditar, setIsModalEditar] = useState(false);
+  const [productoEditar, setProductoEditar] = useState(null);
 
   function actualizarEstadoProductos() {
     getAllProducts().then((productos) => {
@@ -27,6 +30,7 @@ const Home = ({usuario}) => {
   return (
     <Container fluid>
       <ModalAniadir isModalAniadir={isModalAniadir} setIsModalAniadir={setIsModalAniadir} actualizarEstadoProductos={actualizarEstadoProductos}/>
+      {productoEditar && (<ModalEditar isModalEditar={isModalEditar} setIsModalEditar={setIsModalEditar} actualizarEstadoProductos={actualizarEstadoProductos} productoEditar={productoEditar} setProductoEditar={setProductoEditar}/>)}
       <Stack direction="horizontal" className="justify-content-between">
         <p style={{fontSize: 24}}>Home - Welcome, {usuario.email}</p>
         <Button onClick={signOut}>Cerrar Sesión</Button>
@@ -62,10 +66,14 @@ const Home = ({usuario}) => {
               <td>{producto.cantidad}</td>
               <td>{producto.sku}</td>
               <td>
-                <Button variant="secondary" className="mx-2">Editar</Button>
+                <Button variant="secondary" className="mx-2" onClick={() => {
+                  setIsModalEditar(true);
+                  setProductoEditar({...producto});
+                }}>Editar</Button>
                 <Button variant="danger" onClick={() => {
-                  eliminarProductoHome(producto);
-                  actualizarEstadoProductos();
+                  eliminarProductoHome(producto).then(confirmacion => {
+                    actualizarEstadoProductos();
+                  });
                 }}>Eliminar</Button>
               </td>
             </tr>
