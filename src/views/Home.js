@@ -3,6 +3,7 @@ import signOut from "../functions/cerrarSesion";
 import {Container, Stack, Button, Form, Table} from "react-bootstrap";
 import getAllProducts from "../functions/getAllProducts";
 import ModalAniadir from '../components/ModalAniadir';
+import eliminarProductoHome from "../functions/eliminarProductoHome";
 
 const Home = ({usuario}) => {
 
@@ -62,7 +63,10 @@ const Home = ({usuario}) => {
               <td>{producto.sku}</td>
               <td>
                 <Button variant="secondary" className="mx-2">Editar</Button>
-                <Button variant="danger">Eliminar</Button>
+                <Button variant="danger" onClick={() => {
+                  eliminarProductoHome(producto);
+                  actualizarEstadoProductos();
+                }}>Eliminar</Button>
               </td>
             </tr>
           ))}
