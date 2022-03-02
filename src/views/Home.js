@@ -5,6 +5,7 @@ import getAllProducts from "../functions/getAllProducts";
 import ModalAniadir from '../components/ModalAniadir';
 import eliminarProductoHome from "../functions/eliminarProductoHome";
 import ModalEditar from '../components/ModalEditar';
+import filtrarDatos from '../functions/filtrarDatos';
 
 const Home = ({usuario}) => {
 
@@ -12,6 +13,13 @@ const Home = ({usuario}) => {
   const [isModalAniadir, setIsModalAniadir] = useState(false);
   const [isModalEditar, setIsModalEditar] = useState(false);
   const [productoEditar, setProductoEditar] = useState(null);
+
+  async function busquedaFormHandler(e) {
+    e.preventDefault();
+    const busqueda = e.target.busqueda.value;
+    const nvosDocus = await filtrarDatos(busqueda);
+    setProductos(nvosDocus);
+  }
 
   function actualizarEstadoProductos() {
     getAllProducts().then((productos) => {
@@ -36,13 +44,17 @@ const Home = ({usuario}) => {
         <Button onClick={signOut}>Cerrar Sesión</Button>
       </Stack>
       <hr/>
-      <Form>
+      <Form onSubmit={busquedaFormHandler}>
         <Stack direction="horizontal">
           <Form.Group controlId="busqueda" className="w-75 m-3">
             <Form.Control type="text" placeholder="Buscar"/>
           </Form.Group>
           <Button variant="dark" type="submit" className="mx-2">Buscar</Button>
-          <Button variant="info">Resetear</Button>
+          <Button variant="info" onClick={() => {
+            const input = document.getElementById("busqueda");
+            input.value = "";
+            actualizarEstadoProductos();
+          }}>Resetear</Button>
         </Stack>
       </Form>
       <hr/>
