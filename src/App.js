@@ -19,7 +19,7 @@ function App() {
   });
 
   return (
-    <Container fluid>
+    <Container fluid className="container">
       {usuario ? <Home usuario={usuario}/> : <Login/>}
     </Container>
   );

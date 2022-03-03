@@ -9,13 +9,12 @@ async function submitHandler(e) {
     const correo = document.getElementById("formCorreo").value;
     const contra = e.target.formContra.value;
     await loginEmailPassword(correo, contra);
-    // console.log(correo, contra);
 }
 
   return (
-    <Container className="mt-5">
+    <Container className="mt-5 content">
         <h1 className="text-center" style={{color: "cyan"}}>Login</h1>
-        <Form onSubmit={submitHandler}>
+        <Form onSubmit={submitHandler} className="form">
             <Form.Group controlId="formCorreo">
                 <Form.Label style={{color: "orange"}}>Correo</Form.Label>
                 <Form.Control type="email" placeholder="Enter email"></Form.Control>
