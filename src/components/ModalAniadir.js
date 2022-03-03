@@ -18,10 +18,10 @@ function ModalAniadir({isModalAniadir, setIsModalAniadir, actualizarEstadoProduc
 
   return (
     <Modal show={isModalAniadir} onHide={() => setIsModalAniadir(false)}>
-        <Modal.Header>
+        <Modal.Header className="bg-dark text-info">
             <Modal.Title>Añadir Producto</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="bg-dark">
             <Form>
                 <Stack>
                     <Form.Control type="text" id="titulo" placeholder="titulo" className="mb-3"/>
@@ -31,7 +31,7 @@ function ModalAniadir({isModalAniadir, setIsModalAniadir, actualizarEstadoProduc
                 </Stack>
             </Form>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className="bg-dark">
             <Button variant="secondary" onClick={() => setIsModalAniadir(false)}>Cancelar</Button>
             <Button variant="primary" onClick={aniadirProductoModal}>Añadir</Button>
         </Modal.Footer>

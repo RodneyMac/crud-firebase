@@ -1,5 +1,4 @@
 import React from "react";
-// import { useState } from 'react';
 import Container from "react-bootstrap/Container";
 import './App.css';
 import Home from "./views/Home";

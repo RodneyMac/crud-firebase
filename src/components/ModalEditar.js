@@ -25,10 +25,10 @@ function ModalEditar({isModalEditar, setIsModalEditar, actualizarEstadoProductos
         setIsModalEditar(false);
         setProductoEditar(null);
     }}>
-        <Modal.Header>
+        <Modal.Header className="bg-dark text-info text-center">
             <Modal.Title>Editar Producto</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="bg-dark">
             <Form>
                 <Stack>
                     <Form.Control type="text" id="titulo" placeholder="titulo" className="mb-3" value={productoEstado.titulo} onChange={(e) => {setProductoEstado({...productoEstado, titulo: e.target.value})}}/>
@@ -38,7 +38,7 @@ function ModalEditar({isModalEditar, setIsModalEditar, actualizarEstadoProductos
                 </Stack>
             </Form>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className="bg-dark">
             <Button variant="secondary" onClick={() => {
                 setIsModalEditar(false);
                 setProductoEditar(null);

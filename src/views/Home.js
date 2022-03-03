@@ -36,16 +36,16 @@ const Home = ({usuario}) => {
   }, []);
 
   return (
-    <Container fluid>
+    <Container fluid="md" className="mt-4 text-center">
       <ModalAniadir isModalAniadir={isModalAniadir} setIsModalAniadir={setIsModalAniadir} actualizarEstadoProductos={actualizarEstadoProductos}/>
       {productoEditar && (<ModalEditar isModalEditar={isModalEditar} setIsModalEditar={setIsModalEditar} actualizarEstadoProductos={actualizarEstadoProductos} productoEditar={productoEditar} setProductoEditar={setProductoEditar}/>)}
       <Stack direction="horizontal" className="justify-content-between">
-        <p style={{fontSize: 24}}>Home - Welcome, {usuario.email}</p>
+        <p style={{fontSize: 24, color: "lime"}}>Welcome <b style={{color: "cyan"}}>{usuario.email}</b></p>
         <Button onClick={signOut}>Cerrar Sesión</Button>
       </Stack>
-      <hr/>
+      <hr style={{color: "cyan"}}/>
       <Form onSubmit={busquedaFormHandler}>
-        <Stack direction="horizontal">
+        <Stack direction="horizontal" className="justify-content-center">
           <Form.Group controlId="busqueda" className="w-75 m-3">
             <Form.Control type="text" placeholder="Buscar"/>
           </Form.Group>
@@ -57,10 +57,10 @@ const Home = ({usuario}) => {
           }}>Resetear</Button>
         </Stack>
       </Form>
-      <hr/>
-      <Table>
+      <hr style={{color: "cyan"}}/>
+      <Table style={{color: "white"}} className="text-center">
         <thead>
-          <tr>
+          <tr style={{color: "orange"}}>
             <th>#</th>
             <th>Titulo</th>
             <th>Precio</th>
@@ -72,13 +72,13 @@ const Home = ({usuario}) => {
         <tbody>
           {productos && productos.map((producto, index) => (
             <tr key={index}>
-              <td>{index + 1}</td>
+              <td style={{color: "cyan"}}>{index + 1}</td>
               <td>{producto.titulo}</td>
               <td>{producto.precio}</td>
               <td>{producto.cantidad}</td>
               <td>{producto.sku}</td>
               <td>
-                <Button variant="secondary" className="mx-2" onClick={() => {
+                <Button variant="secondary" className="mx-2 m-1" onClick={() => {
                   setIsModalEditar(true);
                   setProductoEditar({...producto});
                 }}>Editar</Button>
@@ -92,7 +92,9 @@ const Home = ({usuario}) => {
           ))}
         </tbody>
       </Table>
-      <Button onClick={aniadirProductoHome}>Añadir Producto</Button>
+      <div className="text-center">
+        <Button onClick={aniadirProductoHome} variant="success">Añadir Producto</Button>
+      </div>
     </Container>
   )
 }
