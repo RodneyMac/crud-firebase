@@ -36,12 +36,12 @@ const Home = ({usuario}) => {
   }, []);
 
   return (
-    <Container fluid="md" className="mt-4 text-center">
+      <Container fluid="md" className="mt-4">
       <ModalAniadir isModalAniadir={isModalAniadir} setIsModalAniadir={setIsModalAniadir} actualizarEstadoProductos={actualizarEstadoProductos}/>
       {productoEditar && (<ModalEditar isModalEditar={isModalEditar} setIsModalEditar={setIsModalEditar} actualizarEstadoProductos={actualizarEstadoProductos} productoEditar={productoEditar} setProductoEditar={setProductoEditar}/>)}
       <Stack direction="horizontal" className="justify-content-between">
         <p style={{fontSize: 24, color: "lime"}}>Welcome <b style={{color: "cyan"}}>{usuario.email}</b></p>
-        <Button onClick={signOut}>Cerrar Sesión</Button>
+        <Button onClick={signOut} className="mb-2">Cerrar Sesión</Button>
       </Stack>
       <hr style={{color: "cyan"}}/>
       <Form onSubmit={busquedaFormHandler}>
@@ -93,9 +93,9 @@ const Home = ({usuario}) => {
         </tbody>
       </Table>
       <div className="text-center">
-        <Button onClick={aniadirProductoHome} variant="success">Añadir Producto</Button>
+        <Button onClick={aniadirProductoHome} variant="success" className="mt-4">Añadir Producto</Button>
       </div>
-    </Container>
+      </Container>
   )
 }
 
