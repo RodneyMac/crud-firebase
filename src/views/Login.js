@@ -13,7 +13,7 @@ async function submitHandler(e) {
 }
 
   return (
-    <Container fluid="sm" className="mt-5">
+    <Container className="mt-5">
         <h1 className="text-center" style={{color: "cyan"}}>Login</h1>
         <Form onSubmit={submitHandler}>
             <Form.Group controlId="formCorreo">

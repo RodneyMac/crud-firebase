@@ -36,17 +36,17 @@ const Home = ({usuario}) => {
   }, []);
 
   return (
-      <Container fluid="md" className="mt-4">
+      <Container className="mt-4 container">
       <ModalAniadir isModalAniadir={isModalAniadir} setIsModalAniadir={setIsModalAniadir} actualizarEstadoProductos={actualizarEstadoProductos}/>
       {productoEditar && (<ModalEditar isModalEditar={isModalEditar} setIsModalEditar={setIsModalEditar} actualizarEstadoProductos={actualizarEstadoProductos} productoEditar={productoEditar} setProductoEditar={setProductoEditar}/>)}
       <Stack direction="horizontal" className="justify-content-between">
         <p style={{fontSize: 24, color: "lime"}}>Welcome <b style={{color: "cyan"}}>{usuario.email}</b></p>
-        <Button onClick={signOut} className="mb-2">Cerrar Sesión</Button>
+        <Button onClick={signOut} className="">Cerrar Sesión</Button>
       </Stack>
       <hr style={{color: "cyan"}}/>
       <Form onSubmit={busquedaFormHandler}>
         <Stack direction="horizontal" className="justify-content-center">
-          <Form.Group controlId="busqueda" className="w-75 m-3">
+          <Form.Group controlId="busqueda" className="w-75">
             <Form.Control type="text" placeholder="Buscar"/>
           </Form.Group>
           <Button variant="dark" type="submit" className="mx-2">Buscar</Button>
@@ -93,7 +93,7 @@ const Home = ({usuario}) => {
         </tbody>
       </Table>
       <div className="text-center">
-        <Button onClick={aniadirProductoHome} variant="success" className="mt-4">Añadir Producto</Button>
+        <Button onClick={aniadirProductoHome} variant="success" className="mt-2">Añadir Producto</Button>
       </div>
       </Container>
   )

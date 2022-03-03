@@ -1,9 +1,15 @@
-* {
-  margin: auto !important;
+.container {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
 }
 
-body {
-  display: flex !important;
+@media(max-width: 500px) {
+  body {
+    display: flex !important;
+    align-items: center;
+    justify-content: center !important;
+  }
 }
 
 .App {
